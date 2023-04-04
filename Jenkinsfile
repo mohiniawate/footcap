@@ -10,7 +10,7 @@ pipeline {
         stage('Push') {
             steps {
                 // Push the Docker image to your ECR repository
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AKIAU63EMJYQ4O646JQX', credentialsId: "System", secretKeyVariable: 'H7S9DOD5QM3pNkuas8b+CcjkSBl/EyOvRQeRiMiS']]) {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AKIAU63EMJYQ4O646JQX', credentialsId: "awscredit", secretKeyVariable: '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']]) {
                     sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/u4p8s1t2'
                     sh 'docker tag footcap-repo:latest public.ecr.aws/u4p8s1t2/footcap-repo:latest'
                     sh 'docker push public.ecr.aws/u4p8s1t2/footcap-repo:latest'
