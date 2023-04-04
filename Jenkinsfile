@@ -17,18 +17,11 @@ pipeline {
                 }
             }
         }
-        // stage('Deploy') {
-        //     steps {
-        //         // Deploy the Docker image to your ECS cluster and service
-        //         ecsUpdateService(
-        //             cluster: 'footcap-naginx',
-        //             service: 'footcap-test-service',
-        //             image: 'public.ecr.aws/n7a1b8r0/footcap-nginx:latest',
-        //             region: 'eu-north-1',
-        //             waitForServiceCapacity: true,
-        //             taskDefinitionOverride: ''
-        //         )
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                // Deploy the Docker image to your ECS cluster and service
+                sh 'aws ecs update-service --cluster footcap --service service --force-new-deployment'
+            }
+        }
     }
 }
