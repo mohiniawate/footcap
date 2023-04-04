@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy the Docker image to your ECS cluster and service
-                sh 'aws ecs update-service --cluster footcap --service service --force-new-deployment'
+                sh 'aws ecs update-service --cluster footcap --service service --region eu-north-1 --force-new-deployment'
             }
         }
     }
